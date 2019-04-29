@@ -31,12 +31,6 @@ DB_CONNECT = {
     'charset': 'utf8',
     'use_unicode': True,
 }
-DB_CREDS = {
-    'host': '127.0.0.1',
-    'user': 'root',
-    'pass': 'asdlkj11411',
-    'db': 'heisei'
-}
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 

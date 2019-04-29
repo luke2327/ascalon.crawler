@@ -16,7 +16,7 @@ class RatingSampleSpider(scrapy.Spider):
             try:
                 item['player_name'] = xp('td[2]/a/text()')
             except Exception:
-                item['player_name'] = 'null'
+                continue
             item['link'] = xp('td[2]/a/@href')
             item['rank'] = xp('td[1]/div[@class="crank"]/text()')
             item['source'] = 'inven.co.kr'

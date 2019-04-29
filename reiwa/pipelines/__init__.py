@@ -11,9 +11,12 @@ class InsertDB(object):
     def __init__(self):
         dbargs = settings.get('DB_CONNECT')
         db_server = settings.get('DB_SERVER')
-        # dbpool = adbapi.ConnectionPool(db_server, **dbargs)
-        # self.dbpool = dbpool
-        print 'hello'
+        dbpool = adbapi.ConnectionPool(db_server, **dbargs)
+        self.dbpool = dbpool
     def process_item(self, item, spider):
-        print 'nice'
+        if spider.__class__.__name__[0:6] == 'Rating':
+            pipeline_class = globals()['RatingPL']
+        else:
+            pipeline_class = globals()[spider.__class__.__name__+"PL"]
+        pipeline_class(self, item, spider)
         return item

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# import MySQLdb
-import pymysql
+import MySQLdb
 from scrapy.utils.project import get_project_settings
 
 settings = get_project_settings()
@@ -8,7 +7,7 @@ settings = get_project_settings()
 def search_query(q, write=False):
     try:
         setting = settings.get('READ_DB_CONNECT')
-        db = pymysql.conn(host = setting['host'],
+        db = MySQLdb.connector(host = setting['host'],
                              user = setting['user'],
                              passwd = setting['passwd'],
                              db = setting['db'],
