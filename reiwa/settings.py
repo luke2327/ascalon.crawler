@@ -103,7 +103,7 @@ ITEM_PIPELINES = {
 
 ############
 ## CUSTOM ##
-###########
+############
 
 LOG_FILE = 'scrapy.log'
 LOG_STDOUT = False
