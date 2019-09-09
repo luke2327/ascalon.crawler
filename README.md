@@ -6,9 +6,8 @@ eim 에서 사용하는 크롤러 입니다
   
   
    
-Scrapy version : [추가바람]
-
-Python : 2.7
++ Scrapy version : [추가바람]
++ Python version : 2.7
 
 - - -
 
@@ -31,13 +30,10 @@ Python : 2.7
 
 ## 사용법
 scrapy [명령] [스파이더 이름]
-
-ex) scrapy crawl vod_youtube_list
++ ex) scrapy crawl vod_youtube_list
 
 ## 스파이더 명명 규칙
 vod_youtube_list
 
 첫 언더바 앞에 있는 단어는 크롤링 형식에 맞게 씁니다. 추후 추가될 예정
-asdf
-
-ex) vod, hlvod, rating, game, blog, ...
++ ex) vod, hlvod, rating, game, blog, ...
