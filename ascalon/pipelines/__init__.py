@@ -1,7 +1,7 @@
 import logging
 import sys
-from reiwa.pipelines.rating_pl import RatingPL
-from reiwa.secondary import search_query
+from ascalon.pipelines.rating_pl import RatingPL
+from ascalon.secondary import search_query
 from twisted.enterprise import adbapi
 from scrapy.utils.project import get_project_settings
 

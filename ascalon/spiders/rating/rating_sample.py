@@ -1,6 +1,6 @@
 import logging
 import scrapy
-from reiwa.items.rating import RatingItem
+from ascalon.items.rating import RatingItem
 
 class RatingSampleSpider(scrapy.Spider):
     name = 'rating_sample'
@@ -21,4 +21,5 @@ class RatingSampleSpider(scrapy.Spider):
             item['rank'] = xp('td[1]/div[@class="crank"]/text()')
             item['source'] = 'inven.co.kr'
             item['game'] = 'LOL'
-            yield item
+            print item
+            # yield item

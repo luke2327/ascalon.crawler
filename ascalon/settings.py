@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for reiwa project
+# Scrapy settings for ascalon project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -11,12 +11,12 @@
 
 BOT_NAME = 'ascalon'
 
-SPIDER_MODULES = ['reiwa.spiders.rating',]
-NEWSPIDER_MODULE = 'reiwa.spiders.static'
+SPIDER_MODULES = ['ascalon.spiders.rating',]
+NEWSPIDER_MODULE = 'ascalon.spiders.static'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'reiwa (+http://www.yourdomain.com)'
+#USER_AGENT = 'ascalon (+http://www.yourdomain.com)'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML,' +\
     'like Gecko) Chrome/22.0.1207.1 Safari/537.1'
 # Obey robots.txt rules
@@ -57,13 +57,13 @@ DOWNLOAD_DELAY = 0.5
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'reiwa.middlewares.ReiwaSpiderMiddleware': 543,
+#    'ascalon.middlewares.AscalonSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'reiwa.middlewares.ReiwaDownloaderMiddleware': 543,
+#    'ascalon.middlewares.AscalonDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -75,8 +75,8 @@ DOWNLOAD_DELAY = 0.5
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    # 'reiwa.pipelines.ReiwaPipeline': 300,
-    'reiwa.pipelines.InsertDB': 300,
+    # 'ascalon.pipelines.AscalonPipeline': 300,
+    'ascalon.pipelines.InsertDB': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

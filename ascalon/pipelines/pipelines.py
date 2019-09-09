@@ -6,7 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class ReiwaPipeline(object):
+class AscalonPipeline(object):
     def process_item(self, item, spider):
         print item
         return item

@@ -3,11 +3,11 @@ import logging
 import sys
 import re
 import datetime
-from reiwa.secondary import search_query
+from ascalon.secondary import search_query
 from scrapy.utils.project import get_project_settings
 settings = get_project_settings()
 
-class ReiwaDefault(object):
+class AscalonDefault(object):
     reload(sys)
     sys.setdefaultencoding('utf8')
     def __init__(self, idb, item, spider):

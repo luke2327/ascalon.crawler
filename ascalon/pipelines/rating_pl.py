@@ -4,9 +4,9 @@ import sys
 import re
 import logging
 import datetime
-from reiwa.pipelines.default import ReiwaDefault
+from ascalon.pipelines.default import AscalonDefault
 
-class RatingPL(ReiwaDefault):
+class RatingPL(AscalonDefault):
     reload(sys)
     sys.setdefaultencoding('utf8')
     def __init__(self, idb, item, spider):
