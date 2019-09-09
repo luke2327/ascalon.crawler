@@ -9,7 +9,7 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'reiwa'
+BOT_NAME = 'ascalon'
 
 SPIDER_MODULES = ['reiwa.spiders.rating',]
 NEWSPIDER_MODULE = 'reiwa.spiders.static'
