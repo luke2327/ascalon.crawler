@@ -24,9 +24,9 @@ ROBOTSTXT_OBEY = True
 
 DB_SERVER = 'MySQLdb'
 DB_CONNECT = {
-    'db': 'heisei',
+    'db': 'eim_test',
     'user': 'root',
-    'passwd': 'asdlkj11411',
+    'passwd': 'sin5chel',
     'host': '127.0.0.1',
     'charset': 'utf8',
     'use_unicode': True,

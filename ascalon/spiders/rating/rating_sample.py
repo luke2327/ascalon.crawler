@@ -15,11 +15,11 @@ class RatingSampleSpider(scrapy.Spider):
             xp = lambda x: node.xpath(x).extract()[0]
             try:
                 item['player_name'] = xp('td[2]/a/text()')
+                item['link'] = xp('td[2]/a/@href')
+                item['rank'] = xp('td[1]/div[@class="crank"]/text()')
+                item['source'] = 'inven.co.kr'
+                item['game'] = 'LOL'
             except Exception:
                 continue
-            item['link'] = xp('td[2]/a/@href')
-            item['rank'] = xp('td[1]/div[@class="crank"]/text()')
-            item['source'] = 'inven.co.kr'
-            item['game'] = 'LOL'
             print item
-            # yield item
+            yield item
