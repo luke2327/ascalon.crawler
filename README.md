@@ -5,6 +5,7 @@ _Ascalon crawler_
 eim 에서 사용하는 크롤러 입니다
   
   
+   
 Scrapy version : [추가바람]
 
 Python : 2.7
@@ -37,5 +38,6 @@ ex) scrapy crawl vod_youtube_list
 vod_youtube_list
 
 첫 언더바 앞에 있는 단어는 크롤링 형식에 맞게 씁니다. 추후 추가될 예정
+asd
 
 ex) vod, hlvod, rating, game, blog, ...
