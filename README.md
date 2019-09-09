@@ -38,6 +38,6 @@ ex) scrapy crawl vod_youtube_list
 vod_youtube_list
 
 첫 언더바 앞에 있는 단어는 크롤링 형식에 맞게 씁니다. 추후 추가될 예정
-asd
+asdf
 
 ex) vod, hlvod, rating, game, blog, ...
