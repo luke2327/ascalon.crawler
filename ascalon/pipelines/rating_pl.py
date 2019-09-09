@@ -20,16 +20,16 @@ class RatingPL(AscalonDefault):
         item = self._preprocessing(item)
         try:
             temp = (
-            'INSERT IGNORE INTO meiji_rating (player_name, game, '
-            '`source`, `rank`, link, del, create_tmp) '
-            'VALUES'
-            '("%s", "%s", "%s", %s, "%s", "%s", '
-            'DATE_ADD(now(), INTERVAL RAND()*60 SECOND)) '
-            % (unicode(item['player_name']), item['game'], item['source'],
-               str(item['rank']), unicode(item['link']), item['del_field'])
-            )
+                'INSERT IGNORE INTO UserInfo (player_name, game, '
+                '`source`, `rank`, link, create_tmp) '
+                'VALUES'
+                '("%s", "%s", "%s", %s, "%s", '
+                'DATE_ADD(now(), INTERVAL RAND()*60 SECOND)) '
+                % (unicode(item['player_name']), item['game'], item['source'],
+                   str(item['rank']), unicode(item['link']))
+              )
             print temp
-            tx.execute(temp)
+            # tx.execute(temp)
         except Exception as e:
             print e
-        rating_id = tx.lastrowid
+        # rating_id = tx.lastrowid
