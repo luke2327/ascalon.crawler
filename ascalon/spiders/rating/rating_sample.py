@@ -21,5 +21,4 @@ class RatingSampleSpider(scrapy.Spider):
                 item['game'] = 'LOL'
             except Exception:
                 continue
-            print item
             yield item

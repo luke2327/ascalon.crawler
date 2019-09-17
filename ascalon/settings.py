@@ -22,12 +22,12 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML,' +\
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-DB_SERVER = 'MySQLdb'
+DB_SERVER = 'pymysql'
 DB_CONNECT = {
     'db': 'eim_test',
     'user': 'root',
     'passwd': 'sin5chel',
-    'host': '127.0.0.1',
+    'host': '34.207.159.244',
     'charset': 'utf8',
     'use_unicode': True,
 }

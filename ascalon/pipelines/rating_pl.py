@@ -26,10 +26,9 @@ class RatingPL(AscalonDefault):
                 '("%s", "%s", "%s", %s, "%s", '
                 'DATE_ADD(now(), INTERVAL RAND()*60 SECOND)) '
                 % (unicode(item['player_name']), item['game'], item['source'],
-                   str(item['rank']), unicode(item['link']))
-              )
-            print temp
-            # tx.execute(temp)
+                str(item['rank']), unicode(item['link']))
+            )
+            tx.execute(temp)
         except Exception as e:
             print e
         # rating_id = tx.lastrowid
