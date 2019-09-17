@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import logging
 import scrapy
 from ascalon.items.rating import RatingItem
@@ -19,6 +21,8 @@ class RatingSampleSpider(scrapy.Spider):
                 item['rank'] = xp('td[1]/div[@class="crank"]/text()')
                 item['source'] = 'inven.co.kr'
                 item['game'] = 'LOL'
+
+                print item
             except Exception:
                 continue
             yield item
