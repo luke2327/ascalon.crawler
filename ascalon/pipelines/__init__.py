@@ -1,6 +1,7 @@
 import logging
 import sys
 from ascalon.pipelines.rating_pl import RatingPL
+from ascalon.pipelines.vod_pl import VodPL
 from twisted.enterprise import adbapi
 from scrapy.utils.project import get_project_settings
 
@@ -15,6 +16,8 @@ class InsertDB(object):
     def process_item(self, item, spider):
         if spider.__class__.__name__[0:6] == 'Rating':
             pipeline_class = globals()['RatingPL']
+        elif spider.__class__.__name__[0:3] == 'Vod':
+            pipeline_class = globals()['VodPL']
         else:
             pipeline_class = globals()[spider.__class__.__name__+"PL"]
         pipeline_class(self, item, spider)

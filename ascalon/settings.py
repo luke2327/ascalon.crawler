@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = True
 
 DB_SERVER = 'pymysql'
 DB_CONNECT = {
-    'db': 'eim_test',
+    'db': 'eim',
     'user': 'root',
     'passwd': 'sin5chel',
     'host': '34.207.159.244',

@@ -42,29 +42,37 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 continue
             
             try:
-                temp_duration = xp('div[@class="yt-lockup-thumbnail"]/span[contains(@class, "contains-addto")]/span[@class="video-time"]/span/@aria-label')
-                temp_duration = re.split(r',', temp_duration)
-                print temp_duration
+                item['duration'] = ''
+                temp_duration = xp('div[@class="yt-lockup-thumbnail"]/span[contains(@class,'\
+                                    '"contains-addto")]/span[@class="video-time"]/span/@aria-label')
+                if temp_duration is None:
+                    raise ex.IgnoreType('duration', temp_duration)
+                temp_duration = temp_duration.split(',')
 
-                dt_hours = '0'
-                dt_minutes = '0'
-                dt_seconds = '0'
+                # initlize with timedelta
+                delta_hours = datetime.timedelta(hours = 0)
+                delta_minutes = datetime.timedelta(minutes = 0)
+                delta_seconds = datetime.timedelta(seconds = 0)
                 for time in temp_duration:
                     time.strip()
-                    if 'seconds' in time:
-                        dt_seconds = time.split()[0]
-                    elif 'minutes' in time:
-                        dt_minutes = time.split()[0]
-                    elif 'hours' in time:
-                        dt_hours = time.split()[0]
-                print dt_seconds
-                temp_duration = str(parse(dt_hours + ':' + dt_minutes + ':' + dt_seconds)).split()[1]
-                # duration_dt = datetime.datetime.strftime()
-                item['duration'] = temp_duration
-                
-                print item['duration']
-                print '\n'
+                    if 'second' in time:
+                        delta_seconds = datetime.timedelta(seconds = int(time.split()[0]))
+                    elif 'minute' in time:
+                        delta_minutes = datetime.timedelta(minutes = int(time.split()[0]))
+                    elif 'hour' in time:
+                        delta_hours = datetime.timedelta(hours = int(time.split()[0]))
+                delta_duration = str(delta_hours + delta_minutes + delta_seconds)
+
+                dt = []
+                for time in delta_duration.split(':'):
+                    dt.append(str(int(time)))
+
+                # join duration
+                item['duration'] = dt[0] + 'h ' + dt[1] + 'm ' + dt[2] + 's'
+            except ex.IgnoreType as e:
+                logging.error(e)
+                continue
             except Exception as e:
                 print e
 
-            # Encode(location = 'duration', object = item['duration'])
+            yield item
