@@ -2,8 +2,10 @@
 
 import logging
 import scrapy
+import datetime
 from ascalon.items.vod import VodItem
 from ascalon.lib.exception import commonException as ex
+from ascalon.lib.stdout import extractEncoding as exEncode
 
 class VodYoutubeMapleSpider (scrapy.Spider):
     name = 'vod_youtube_maple'
@@ -38,8 +40,10 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 continue
             
             try:
-                item['duration'] = '추가 예정'
+                temp_duration = xp('div[@class="yt-lockup-thumbnail"]/span[contains(@class, "contains-addto")]/span[@class="video-time"]/span/@aria-label')
+                item['duration'] = temp_duration
             except Exception as e:
                 print e
 
-            print item
+            exEncode.ExtractEncoding(location = 'title', object = item['title'])
+            exEncode.ExtractEncoding(object = item)
