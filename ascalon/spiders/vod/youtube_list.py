@@ -3,9 +3,11 @@
 import logging
 import scrapy
 import datetime
+import re
+from dateutil.parser import parse
 from ascalon.items.vod import VodItem
 from ascalon.lib.exception import commonException as ex
-from ascalon.lib.stdout import extractEncoding as exEncode
+from ascalon.lib.stdout.extractEncoding import ExtractEncoding as Encode
 
 class VodYoutubeMapleSpider (scrapy.Spider):
     name = 'vod_youtube_maple'
@@ -41,9 +43,28 @@ class VodYoutubeMapleSpider (scrapy.Spider):
             
             try:
                 temp_duration = xp('div[@class="yt-lockup-thumbnail"]/span[contains(@class, "contains-addto")]/span[@class="video-time"]/span/@aria-label')
+                temp_duration = re.split(r',', temp_duration)
+                print temp_duration
+
+                dt_hours = '0'
+                dt_minutes = '0'
+                dt_seconds = '0'
+                for time in temp_duration:
+                    time.strip()
+                    if 'seconds' in time:
+                        dt_seconds = time.split()[0]
+                    elif 'minutes' in time:
+                        dt_minutes = time.split()[0]
+                    elif 'hours' in time:
+                        dt_hours = time.split()[0]
+                print dt_seconds
+                temp_duration = str(parse(dt_hours + ':' + dt_minutes + ':' + dt_seconds)).split()[1]
+                # duration_dt = datetime.datetime.strftime()
                 item['duration'] = temp_duration
+                
+                print item['duration']
+                print '\n'
             except Exception as e:
                 print e
 
-            exEncode.ExtractEncoding(location = 'title', object = item['title'])
-            exEncode.ExtractEncoding(object = item)
+            # Encode(location = 'duration', object = item['duration'])
