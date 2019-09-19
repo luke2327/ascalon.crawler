@@ -16,3 +16,7 @@ class RatingItem(scrapy.Item):
     link = scrapy.Field()
     del_field = scrapy.Field()
     create_tmp = scrapy.Field()
+
+    def initialize(self, value):
+        for keys, _ in self.fields.items():
+            self[keys] = value

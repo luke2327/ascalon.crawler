@@ -21,18 +21,18 @@ class VodPL(AscalonDefault):
         try:
             query = (
                 'INSERT IGNORE INTO vod (title, game, '
-                '`source`, link, image_link, duration, create_tmp) '
+                '`source`, link, image_link, `duration`, create_tmp, before_tmp) '
                 'VALUES'
-                '("%s", "%s", "%s", "%s", "%s", "%s", '
-                'DATE_ADD(now(), INTERVAL RAND()*60 SECOND)) '
+                '("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")'
                 % (unicode(item['title']), item['game'], item['source'],
                     unicode(item['link']), unicode(item['image_link']),
-                    unicode(item['duration'])
+                    unicode(item['duration']), unicode(item['create_tmp']), item['before_tmp']
                 )
             )
 
             print query
             tx.execute(query)
         except Exception as e:
+            print 'hello'
             print e
         # rating_id = tx.lastrowid

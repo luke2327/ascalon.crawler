@@ -71,5 +71,5 @@ class ExtractEncoding ():
     def _printerByIterator (self, moduleLocation, methods, object):
         print '[' + moduleLocation + ' -> ' + methods + ']'
         for key, val in object.iteritems():
-            print '[' + str(type(val)) + '][' + key + '] ' + val
+            print '[' + str(type(val)) + '][' + key + '] ' + str(val)
         print '\n'

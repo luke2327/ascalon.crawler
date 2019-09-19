@@ -22,13 +22,17 @@ class VodYoutubeMapleSpider (scrapy.Spider):
         logging.info(response)
         for node in response.xpath('//li[contains(@class, "yt-shelf-grid-item")]/div/div'):
             item = VodItem()
-            xp = lambda x: node.xpath(x).extract_first()
+
+            # item 전체 초기화
+            item.initialize(None)
+            xp_first = lambda x: node.xpath(x).extract_first()
+            xp = lambda x: node.xpath(x).extract()
 
             item['source'] = 'youtube.com'
             item['game'] = 'maple'
 
             try:
-                item['title'] = xp('div[@class="yt-lockup-content"]/h3/a/@title')
+                item['title'] = xp_first('div[@class="yt-lockup-content"]/h3/a/@title')
                 if item['title'] is None:
                     raise ex.IgnoreType('title', item['title'])
             except (IndexError, ex.IgnoreType) as e:
@@ -36,14 +40,47 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 continue
 
             try:
-                item['link'] = self.url_scheme + xp('div[@class="yt-lockup-content"]/h3/a/@href')
+                item['link'] = self.url_scheme + xp_first('div[@class="yt-lockup-content"]/h3/a/@href')
             except IndexError as e:
                 logging.error(e)
                 continue
             
             try:
+                item['views'] = xp_first('div[@class="yt-lockup-content"]/div/ul/li/text()')
+                if 'watch' in item['views']:
+                    continue
+                item['views'] = ''.join(re.findall('\d+', item['views']))
+            except IndexError as e:
+                logging.error(e)
+                continue
+
+            try:
+                item['before_tmp'] = xp('div[@class="yt-lockup-content"]/div/ul/li[2]/text()')[0]
+                time = item['before_tmp'].split()[0]
+                method = item['before_tmp'].split()[1]
+                current_time = datetime.datetime.now()
+
+                delta = ''
+
+                if 'second' in method:
+                    delta = datetime.timedelta(seconds=int(time))
+                elif 'hour' in method:
+                    delta = datetime.timedelta(hours=int(time))
+                elif 'day' in method:
+                    delta = datetime.timedelta(days=int(time))
+                elif 'week' in method:
+                    delta = datetime.timedelta(weeks=int(time))
+                elif 'month' in method:
+                    delta = datetime.timedelta(months=int(time))
+
+                item['create_tmp'] = str(current_time - delta).split('.')[0]
+            except IndexError as e:
+                logging.error(e)
+                continue
+
+            try:
                 item['duration'] = ''
-                temp_duration = xp('div[@class="yt-lockup-thumbnail"]/span[contains(@class,'\
+                temp_duration = xp_first('div[@class="yt-lockup-thumbnail"]/span[contains(@class,'\
                                     '"contains-addto")]/span[@class="video-time"]/span/@aria-label')
                 if temp_duration is None:
                     raise ex.IgnoreType('duration', temp_duration)
