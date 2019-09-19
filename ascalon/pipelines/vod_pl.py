@@ -26,8 +26,8 @@ class VodPL(AscalonDefault):
                 '("%s", "%s", "%s", "%s", "%s", "%s", '
                 'DATE_ADD(now(), INTERVAL RAND()*60 SECOND)) '
                 % (unicode(item['title']), item['game'], item['source'],
-                  unicode(item['link']), unicode(item['image_link']),
-                  unicode(item['duration'])
+                    unicode(item['link']), unicode(item['image_link']),
+                    unicode(item['duration'])
                 )
             )
 
