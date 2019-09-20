@@ -20,6 +20,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
             yield scrapy.Request(url, self.parse, dont_filter=True)
     def parse(self, response):
         logging.info(response)
+        auth = response.xpath('//meta[@name="title"]/@content').extract()[0]
         for node in response.xpath('//li[contains(@class, "yt-shelf-grid-item")]/div/div'):
             item = VodItem()
 
@@ -30,6 +31,12 @@ class VodYoutubeMapleSpider (scrapy.Spider):
 
             item['source'] = 'youtube.com'
             item['game'] = 'maple'
+
+            try:
+                item['auth'] = auth
+            except ex.IgnoreType as e:
+                logging.error(e)
+                continue
 
             try:
                 item['title'] = xp_first('div[@class="yt-lockup-content"]/h3/a/@title')
@@ -49,7 +56,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 item['views'] = xp_first('div[@class="yt-lockup-content"]/div/ul/li/text()')
                 if 'watch' in item['views']:
                     continue
-                item['views'] = ''.join(re.findall('\d+', item['views']))
+                item['views'] = ''.join(re.findall(r'\d+', item['views']))
             except IndexError as e:
                 logging.error(e)
                 continue
