@@ -14,27 +14,26 @@ class AscalonDefault(object):
             self.conditional_insert, item)
         # query.addErrback(idb.handle_error)
     def _preprocessing(self, item):
-        if item is None or item['link'] == '':
-            return None
-        item['title'] = item['title'].\
-            replace('"', "'").\
-            replace('^', '').\
-            replace('&#8220;', "'").\
-            replace('&#8221;', "'").\
-            replace('&#8220', "'").\
-            replace('&#8221', "'").\
-            replace('&#8211', '-').\
-            replace(';', ',').\
-            replace('}', ']').\
-            replace('{', '[').\
-            replace(u'–', '-')
+        if 'title' in item:
+            item['title'] = item['title'].\
+                replace('"', "'").\
+                replace('^', '').\
+                replace('&#8220;', "'").\
+                replace('&#8221;', "'").\
+                replace('&#8220', "'").\
+                replace('&#8221', "'").\
+                replace('&#8211', '-').\
+                replace(';', ',').\
+                replace('}', ']').\
+                replace('{', '[').\
+                replace(u'–', '-')
         try:
-            if item['image_link'] is None:
+            if 'image_link' in item and item['image_link'] is None:
                 item['image_link'] = ''
         except KeyError:
             item['image_link'] = ''
         try:
-            if item['del_field'] is None:
+            if 'del_field' in item and item['del_field'] is None:
                 item['del_field'] = '0'
         except KeyError:
             item['del_field'] = '0'

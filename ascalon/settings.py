@@ -13,7 +13,8 @@ BOT_NAME = 'ascalon'
 
 SPIDER_MODULES = [
                     'ascalon.spiders.rating',
-                    'ascalon.spiders.vod'
+                    'ascalon.spiders.vod',
+                    'ascalon.spiders.job'
                 ]
 NEWSPIDER_MODULE = 'ascalon.spiders.static'
 
