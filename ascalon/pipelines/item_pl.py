@@ -19,40 +19,22 @@ class ItemPL(AscalonDefault):
 
         item = self._preprocessing(item)
         try:
-            print item
+            sql = 'INSERT IGNORE INTO item_weapon ('
+            for data in item.items():
+                if data[1] is not None:
+                    sql += data[0] + ', '
 
-            # query = (
-            #     'INSERT IGNORE INTO item_weapon (item_cate, item_class, name, name_ko, '
-            #     'req_level, req_str, req_dex, req_int, req_luk, str, dex, int, luk, hp, mp, '
-            #     'watk, matk, wdef, mdef, acc, avoid, durability, upgrade_slot, available, '
-            #     'atk_speed, speed, jump, ignore_def, boss_dmg, starforce, image_link) '
-            #     'VALUES'
-            #     '(%d, "%s", "%s", "%s", %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, '
-            #     '%d, %d, %d, %d, %d, %d, %d, %d, "%s", %d, %d, %d, "%s", "%s", %d, "%s"'
-            #     % (int(item['item_cate']), unicode(item['item_class']), unicode(item['name']),
-            #         unicode(item['name_ko']), int(item['req_level']), int(item['req_str']), 
-            #         int(item['req_dex']), int(item['req_int']), int(item['req_luk']),
-            #         int(item['str']), int(item['dex']), int(item['int']), int(item['luk']),
-            #         int(item['hp']), int(item['mp']), int(item['watk']), int(item['matk']),
-            #         int(item['wdef']), int(item['mdef']), int(item['acc']), int(item['avoid']),
-            #         int(item['durability']), int(item['upgrade_slot']), unicode(item['available']),
-            #         int(item['atk_speed']), int(item['speed']), int(item['jump']),
-            #         unicode(item['ignore_def']), unicode(item[''])
-            #     )
-            # )
+            sql = sql[:-2] + ') VALUES ('
 
-            # query = (
-            #     'INSERT IGNORE INTO job (job_name, `class`, main_stat, '
-            #     'main_atk, affiliation, create_tmp) '
-            #     'VALUES'
-            #     '("%s", "%s", "%s", "%s", "%s", "%s")'
-            #     % (unicode(item['job_name']), unicode(item['job_class']), unicode(item['main_stat']),
-            #         unicode(item['main_atk']), unicode(item['affiliation']), unicode(item['create_tmp'])
-            #     )
-            # )
+            for data in item.items():
+                if data[1] is not None:
+                    if type(data[1]) is unicode or type(data[1]) is str:
+                        sql += '"' + unicode(data[1]) + '", '
+                    else:
+                        sql += unicode(data[1]) + ', '
 
-            # print query
-            # tx.execute(query)
+            sql = sql[:-2] + ')'
 
+            tx.execute(sql)
         except Exception as e:
             print e

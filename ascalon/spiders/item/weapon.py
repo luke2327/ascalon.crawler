@@ -95,7 +95,7 @@ class ItemWeaponSpider (scrapy.Spider):
 
             # item 영어 이름
             try:
-                item['item_name'] = xp_first('tr[1]/td[2]/strong/text()').strip()
+                item['name'] = xp_first('tr[1]/td[2]/strong/text()').strip()
             except ex.IgnoreType as e:
                 logging.error(e)
                 continue
@@ -231,6 +231,4 @@ class ItemWeaponSpider (scrapy.Spider):
                 logging.error(e)
                 continue
             
-            # yield item
-            # Encode(object = item)
-            print item.items()
+            yield item

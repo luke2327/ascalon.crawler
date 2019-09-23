@@ -26,7 +26,7 @@ class AscalonDefault(object):
                 replace(';', ',').\
                 replace('}', ']').\
                 replace('{', '[').\
-                replace(u'–', '-')
+                replace(u'???', '-')
         try:
             if 'image_link' in item and item['image_link'] is None:
                 item['image_link'] = ''
@@ -38,7 +38,7 @@ class AscalonDefault(object):
         except KeyError:
             item['del_field'] = '0'
         try:
-            if item['create_tmp'] is None:
+            if 'create_tmp' in item and item['create_tmp'] is None:
                 item['create_tmp'] = str(datetime.datetime.now()).split('+')[0]
         except KeyError:
             item['create_tmp'] = str(datetime.datetime.now()).split('+')[0]

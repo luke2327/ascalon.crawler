@@ -9,8 +9,8 @@ import scrapy
 
 
 class Item(scrapy.Item):
-    item_name = scrapy.Field()
-    item_name_ko = scrapy.Field()
+    name = scrapy.Field()
+    name_ko = scrapy.Field()
     item_cate = scrapy.Field()
     req_level = scrapy.Field()
     req_str = scrapy.Field()
@@ -39,7 +39,6 @@ class Item(scrapy.Item):
     item_class = scrapy.Field()
     upgrade_slot = scrapy.Field()
     image_link = scrapy.Field()
-    create_tmp = scrapy.Field()
 
     def initialize(self, value):
         for keys, _ in self.fields.items():
