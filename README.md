@@ -37,3 +37,9 @@ vod_youtube_list
 
 첫 언더바 앞에 있는 단어는 크롤링 형식에 맞게 씁니다. 추후 추가될 예정
 + ex) vod, hlvod, rating, game, blog, ...
+
+## 스파이더 종류
+1. ascalon.spiders.rating
+2. ascalon.spiders.vod
+3. ascalon.spiders.job
+4. ascalon.spiders.item
