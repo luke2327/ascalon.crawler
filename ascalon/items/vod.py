@@ -20,6 +20,7 @@ class VodItem(scrapy.Item):
     create_tmp = scrapy.Field()
     before_tmp = scrapy.Field()
     hits = scrapy.Field()
+    language_cd = scrapy.Field()
 
     def initialize(self, value):
         for keys, _ in self.fields.items():

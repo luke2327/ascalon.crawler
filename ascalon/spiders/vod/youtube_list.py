@@ -13,6 +13,11 @@ class VodYoutubeMapleSpider (scrapy.Spider):
     name = 'vod_youtube_maple'
     start_urls = [
         "https://www.youtube.com/channel/UCiCNc3uj8Bnc9bDzHJS058Q/videos", # 신해조 2019-09-17 by liam
+        "https://www.youtube.com/channel/UCR0aLp4aIvxS07g6rGWZr_g/videos", # 개구릿대 2019-10-06 by liam
+        "https://www.youtube.com/channel/UC1dHu9GhbHH7RcHKyJdaOvA/videos", # 맑음 2019-10-06 by liam
+        "https://www.youtube.com/user/skswhdkgo/videos", # 세글자 2019-10-06 by liam
+        "https://www.youtube.com/user/mlchoins/videos", # 명예훈장 2019-10-06 by liam
+        "https://www.youtube.com/user/bjpange/videos", # 팡이 2019-10-06 by liam
     ]
     url_scheme = 'youtube.com'
     def start_requests(self):
@@ -21,6 +26,9 @@ class VodYoutubeMapleSpider (scrapy.Spider):
     def parse(self, response):
         logging.info(response)
         auth = response.xpath('//meta[@name="title"]/@content').extract()[0]
+        path = response.url.split('/')[-2]
+        lang = 'ko'
+
         for node in response.xpath('//li[contains(@class, "yt-shelf-grid-item")]/div/div'):
             item = VodItem()
 
@@ -34,6 +42,12 @@ class VodYoutubeMapleSpider (scrapy.Spider):
 
             try:
                 item['auth'] = auth
+            except ex.IgnoreType as e:
+                logging.error(e)
+                continue
+                
+            try:
+                item['language_cd'] = lang
             except ex.IgnoreType as e:
                 logging.error(e)
                 continue
@@ -57,7 +71,6 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 temp_hits = ''.join(temp_hits)
 
                 item['hits'] = temp_hits
-                print item['hits']
             except Exception as e:
                 logging.error(e)
                 continue
@@ -81,10 +94,10 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 elif 'month' in method:
                     delta = datetime.timedelta(months=int(time))
 
-                item['create_tmp'] = str(current_time - delta).split('.')[0]
+                if delta != '':
+                    item['create_tmp'] = current_time - delta
             except IndexError as e:
                 logging.error(e)
-                continue
 
             try:
                 item['duration'] = ''
@@ -119,5 +132,18 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 continue
             except Exception as e:
                 print e
+
+            ############
+            ## CUSTOM ##
+            ############
+
+            # 팡이
+            if path == 'bjpange':
+                if u'메이플스토리' not in item['title']:
+                    continue
+
+            ## if you insert video that first time
+            ## should on below line
+            # item['del_field'] = 1
 
             yield item

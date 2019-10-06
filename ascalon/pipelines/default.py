@@ -3,7 +3,9 @@ import logging
 import sys
 import re
 import datetime
+import random
 from scrapy.utils.project import get_project_settings
+from ascalon.lib.timezone.tzinfo import TZINFO
 settings = get_project_settings()
 
 class AscalonDefault(object):
@@ -39,9 +41,19 @@ class AscalonDefault(object):
             item['del_field'] = '0'
         try:
             if 'create_tmp' in item and item['create_tmp'] is None:
-                item['create_tmp'] = str(datetime.datetime.now()).split('+')[0]
+                if 'lang' in item and item['lang'] == 'ko':
+                    item['create_tmp'] = datetime.datetime.now(TZINFO['KST'])
+                elif 'lang' in item and item['lang'] == 'ja':
+                    item['create_tmp'] = datetime.datetime.now(TZINFO['JST'])
+                else:
+                    item['create_tmp'] = datetime.datetime.now(TZINFO['UTC'])
         except KeyError:
-            item['create_tmp'] = str(datetime.datetime.now()).split('+')[0]
+            item['create_tmp'] = datetime.datetime.now(TZINFO['UTC'])
+
+        random_second = datetime.timedelta(seconds=int(random.randrange(1,60)))
+        fmt = "%Y-%m-%d %H:%M:%S"
+        item['create_tmp'] = (item['create_tmp'] + random_second).strftime(fmt)
+
         return item
     def conditional_insert(self, tx, item):
         pass
