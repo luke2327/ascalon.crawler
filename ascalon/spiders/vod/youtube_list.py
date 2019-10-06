@@ -67,7 +67,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 continue
             
             try:
-                temp_hits = re.findall('(\d+)', xp('div[@class="yt-lockup-content"]/div/ul/li[1]/text()')[0])
+                temp_hits = re.findall(r'(\d+)', xp('div[@class="yt-lockup-content"]/div/ul/li[1]/text()')[0])
                 temp_hits = ''.join(temp_hits)
 
                 item['hits'] = temp_hits
