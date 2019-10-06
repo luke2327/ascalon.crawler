@@ -120,4 +120,4 @@ class VodYoutubeMapleSpider (scrapy.Spider):
             except Exception as e:
                 print e
 
-            # yield item
+            yield item
