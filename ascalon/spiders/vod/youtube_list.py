@@ -53,11 +53,12 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 continue
             
             try:
-                item['views'] = xp_first('div[@class="yt-lockup-content"]/div/ul/li/text()')
-                if 'watch' in item['views']:
-                    continue
-                item['views'] = ''.join(re.findall(r'\d+', item['views']))
-            except IndexError as e:
+                temp_hits = re.findall('(\d+)', xp('div[@class="yt-lockup-content"]/div/ul/li[1]/text()')[0])
+                temp_hits = ''.join(temp_hits)
+
+                item['hits'] = temp_hits
+                print item['hits']
+            except Exception as e:
                 logging.error(e)
                 continue
 
@@ -119,4 +120,4 @@ class VodYoutubeMapleSpider (scrapy.Spider):
             except Exception as e:
                 print e
 
-            yield item
+            # yield item

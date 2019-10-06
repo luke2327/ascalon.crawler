@@ -19,7 +19,7 @@ class VodItem(scrapy.Item):
     del_field = scrapy.Field()
     create_tmp = scrapy.Field()
     before_tmp = scrapy.Field()
-    views = scrapy.Field()
+    hits = scrapy.Field()
 
     def initialize(self, value):
         for keys, _ in self.fields.items():
