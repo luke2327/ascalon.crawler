@@ -6,11 +6,16 @@ spider_place="ascalon/spiders/vod"
 
 cd $HOME/${project_name}/${crawler_name}/${spider_place}
 
-PATH=$PATH:/usr/local/bin
+PATH=$PATH:/usr/local/bin:/home/ubuntu/.local/bin
 export PATH
 
 echo Action : $PWD
 echo $PATH
+python test.py
+
+which python
+which scrapy
+
 whoami
 date
 scrapy crawl vod_youtube_maple

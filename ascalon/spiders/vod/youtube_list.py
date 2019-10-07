@@ -145,7 +145,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
 
             ## if you insert video that first time
             ## should on below line
-            item['del_field'] = 1
+            # item['del_field'] = 1
 
             # Encode(object=item)
 
