@@ -46,7 +46,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
             except ex.IgnoreType as e:
                 logging.error(e)
                 continue
-                
+
             try:
                 item['language_cd'] = lang
             except ex.IgnoreType as e:
@@ -66,7 +66,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
             except IndexError as e:
                 logging.error(e)
                 continue
-            
+
             try:
                 temp_hits = re.findall(r'(\d+)', xp('div[@class="yt-lockup-content"]/div/ul/li[1]/text()')[0])
                 temp_hits = ''.join(temp_hits)
@@ -93,7 +93,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 elif 'week' in method:
                     delta = datetime.timedelta(weeks=int(time))
                 elif 'month' in method:
-                    delta = datetime.timedelta(months=int(time))
+                    delta = datetime.timedelta(days=int(time * 30))
 
                 if delta != '':
                     item['create_tmp'] = current_time - delta
@@ -145,6 +145,8 @@ class VodYoutubeMapleSpider (scrapy.Spider):
 
             ## if you insert video that first time
             ## should on below line
-            # item['del_field'] = 1
+            item['del_field'] = 1
+
+            # Encode(object=item)
 
             yield item
