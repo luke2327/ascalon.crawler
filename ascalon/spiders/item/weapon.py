@@ -75,7 +75,7 @@ class ItemWeaponSpider (scrapy.Spider):
             item_cate = 41
         elif item_cate == 'cannon':
             item_cate = 44
-        
+
         for node in response.xpath('//div[@id="content-content"]//div[contains(@class, "views-row")]'):
             item = WeaponItem()
             # item 전체 초기화
@@ -99,7 +99,7 @@ class ItemWeaponSpider (scrapy.Spider):
             except ex.IgnoreType as e:
                 logging.error(e)
                 continue
-            
+
             # item 요구 레벨
             try:
                 item['req_level'] = xp('tr[1]/td[3]/text()')[0].strip()
@@ -138,7 +138,7 @@ class ItemWeaponSpider (scrapy.Spider):
                 except IndexError:
                     pass
                 try:
-                    w2 = xp('tr[2]/td[1]/div[2]/text()')[0].split('(')[0].strip() 
+                    w2 = xp('tr[2]/td[1]/div[2]/text()')[0].split('(')[0].strip()
                     w2_type = xp('tr[2]/td[1]/div[2]/strong/text()')[0].strip().lower()
                 except IndexError:
                     pass
@@ -147,13 +147,13 @@ class ItemWeaponSpider (scrapy.Spider):
                     w3_type = xp('tr[2]/td[1]/div[3]/strong/text()')[0].strip().lower()
                 except IndexError:
                     pass
-                
+
                 # 공격력도 마력도 없는데 wdef 옵션이 붙는 경우는 없으므로 패스
                 if 'weapon att' in w1_type:
                     item['watk'] = w1
                 elif 'magic att' in w1_type:
                     item['matk'] = w1
-                
+
                 if 'weapon_att' in w2_type:
                     item['watk'] = w2
                 elif 'magic att' in w2_type:
@@ -179,7 +179,7 @@ class ItemWeaponSpider (scrapy.Spider):
             except ex.IgnoreType as e:
                 logging.error(e)
                 continue
-                
+
             # item 공격 속도 / 내구도
             try:
                 item_etc = xp('tr[2]/td[2]/text()')
@@ -200,7 +200,7 @@ class ItemWeaponSpider (scrapy.Spider):
                 item['durability'] = 0
                 logging.error(e)
                 continue
-            
+
             # item 클래스
             try:
                 item['item_class'] = xp('tr[2]/td[3]/text()')[0].strip().replace(' ', '').lower()
@@ -230,5 +230,5 @@ class ItemWeaponSpider (scrapy.Spider):
             except ex.IgnoreType as e:
                 logging.error(e)
                 continue
-            
+
             yield item

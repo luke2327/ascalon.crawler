@@ -9,15 +9,15 @@ from ascalon.pipelines.default import AscalonDefault
 class ItemPL(AscalonDefault):
     reload(sys)
     sys.setdefaultencoding('utf8')
+
     def __init__(self, idb, item, spider):
         super(ItemPL, self).__init__(idb, item, spider)
     def conditional_insert(self, tx, item):
         if item is None:
             return None
-        ### 1. Insert Vod
-        # Make Insert Vod Query
 
         item = self._preprocessing(item)
+
         try:
             sql = 'INSERT IGNORE INTO item_weapon ('
             for data in item.items():

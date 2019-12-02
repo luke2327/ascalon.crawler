@@ -26,7 +26,7 @@ class JobMapleSpider (scrapy.Spider):
 
             # item 전체 초기화
             item.initialize(None)
-            
+
             xp = lambda x: node.xpath(x).extract()[0]
 
             item['job_class'] = xp('@class').split()[1]
@@ -37,7 +37,7 @@ class JobMapleSpider (scrapy.Spider):
                 yield scrapy.Request(url, meta={'item': item}, callback=self.parse_job)
             except Exception as e:
                 print e
-            
+
     def parse_job(self, response):
         item = response.meta['item']
 

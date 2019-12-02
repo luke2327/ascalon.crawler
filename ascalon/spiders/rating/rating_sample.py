@@ -12,7 +12,7 @@ class RatingSampleSpider(scrapy.Spider):
             yield scrapy.Request(url, self.parse, dont_filter=True)
     def parse(self, response):
         for node in response.xpath('//div[@class="ladderTable"]'
-                                   '//tr[2 <= position() and position() < 51]'):
+                                    '//tr[2 <= position() and position() < 51]'):
             item = RatingItem()
             xp = lambda x: node.xpath(x).extract()[0]
             try:

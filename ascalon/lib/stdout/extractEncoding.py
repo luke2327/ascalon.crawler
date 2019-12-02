@@ -41,7 +41,7 @@ class ExtractEncoding ():
                 pass
         except (Exception, ex.NotPermitThisType) as e:
             logging.error(e)
-    
+
     def _disposeOfString (self, location, object):
         self._printer(location, __name__, sys._getframe().f_code.co_name, object)
     def _disposeOfInteger (self, location, object):
@@ -60,7 +60,7 @@ class ExtractEncoding ():
         self._printer(location, __name__, sys._getframe().f_code.co_name, object)
     def _disposeOfSpiderItem (self, object):
         self._printerByIterator(__name__, sys._getframe().f_code.co_name, object)
-        
+
 
     def _printer (self, location, moduleLocation, methods, object):
         print '[' + moduleLocation + ' -> ' + methods + ']'
