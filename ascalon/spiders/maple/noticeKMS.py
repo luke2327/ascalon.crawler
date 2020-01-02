@@ -22,8 +22,6 @@ class NoticeMapleKMS (scrapy.Spider):
     def parse(self, response):
         logging.info(response)
 
-        print 'connect... start' + str(response)
-
         for node in response.xpath('//div[@class="news_board"]/ul/li'):
             item = NoticeItem()
 
@@ -37,7 +35,6 @@ class NoticeMapleKMS (scrapy.Spider):
             try:
                 item['link'] = self.url_scheme + xp('p/a/@href')
 
-                print item['link']
             except IndexError as e:
                 logging.error(e)
 
@@ -46,7 +43,6 @@ class NoticeMapleKMS (scrapy.Spider):
             try:
                 item['title'] = xp('p/a/span/text()')
 
-                print item['title']
             except (IndexError, ex.IgnoreType) as e:
                 logging.error(e)
 
@@ -54,7 +50,6 @@ class NoticeMapleKMS (scrapy.Spider):
 
             try:
                 iconType = xp('p/a/em/img/@src').split('/')[-1]
-                print iconType
                 iconAlt = xp('p/a/em/img/@alt')
 
                 if ('icon01' in iconType and u'공지' in iconAlt):
@@ -71,6 +66,7 @@ class NoticeMapleKMS (scrapy.Spider):
 
             try:
                 item['published_date'] = xp('div/dl/dd/text()')
+
             except (IndexError, ex.IgnoreType) as e:
                 logging.error(e)
 
