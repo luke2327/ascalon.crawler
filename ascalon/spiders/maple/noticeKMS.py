@@ -12,7 +12,7 @@ class NoticeMapleKMS (scrapy.Spider):
     url_scheme = 'https://maplestory.nexon.com/'
 
     def start_requests(self):
-        for pageIndex in range(1, 11):
+        for pageIndex in range(1, 2): # default (1, 2)
             yield scrapy.Request(
                 self.start_urls[0] + '?page=' + str(pageIndex),
                 self.parse,
