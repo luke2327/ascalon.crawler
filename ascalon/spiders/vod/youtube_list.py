@@ -21,9 +21,11 @@ class VodYoutubeMapleSpider (scrapy.Spider):
         "https://www.youtube.com/user/bjpange/videos", # 팡이 2019-10-06 by liam
     ]
     url_scheme = 'youtube.com'
+
     def start_requests(self):
         for url in self.start_urls:
             yield scrapy.Request(url, self.parse, dont_filter=True)
+
     def parse(self, response):
         logging.info(response)
         auth = response.xpath('//meta[@name="title"]/@content').extract()[0]

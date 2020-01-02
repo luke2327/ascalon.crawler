@@ -16,6 +16,7 @@ SPIDER_MODULES = [
                     'ascalon.spiders.vod',
                     'ascalon.spiders.job',
                     'ascalon.spiders.item',
+                    'ascalon.spiders.maple'
                 ]
 NEWSPIDER_MODULE = 'ascalon.spiders.static'
 

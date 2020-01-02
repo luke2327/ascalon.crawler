@@ -31,9 +31,11 @@ class ItemWeaponSpider (scrapy.Spider):
         'weapons/cannon',
     ]
     url_scheme = 'https://global.hidden-street.net/eq/'
+
     def start_requests(self):
         for url in self.start_urls:
             yield scrapy.Request(self.url_scheme + url, self.parse, dont_filter=True)
+
     def parse(self, response):
         logging.info(response)
         item_cate = response.url.split('/')[-1]
@@ -184,8 +186,6 @@ class ItemWeaponSpider (scrapy.Spider):
             try:
                 item_etc = xp('tr[2]/td[2]/text()')
                 item_etc_type = xp('tr[2]/td[2]/strong/text()')
-
-
 
                 if len(item_etc_type) == 2:
                     for etc in item_etc_type:

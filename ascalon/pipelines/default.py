@@ -11,10 +11,12 @@ settings = get_project_settings()
 class AscalonDefault(object):
     reload(sys)
     sys.setdefaultencoding('utf8')
+
     def __init__(self, idb, item, spider):
         query = idb.dbpool.runInteraction(
             self.conditional_insert, item)
         # query.addErrback(idb.handle_error)
+
     def _preprocessing(self, item):
         if 'title' in item:
             item['title'] = item['title'].\
@@ -29,16 +31,19 @@ class AscalonDefault(object):
                 replace('}', ']').\
                 replace('{', '[').\
                 replace(u'???', '-')
+
         try:
             if 'image_link' in item and item['image_link'] is None:
                 item['image_link'] = ''
         except KeyError:
             item['image_link'] = ''
+
         try:
             if 'del_field' in item and item['del_field'] is None:
                 item['del_field'] = '0'
         except KeyError:
             item['del_field'] = '0'
+
         try:
             if 'create_tmp' in item and item['create_tmp'] is None:
                 if 'lang' in item and item['lang'] == 'ko':
@@ -55,5 +60,6 @@ class AscalonDefault(object):
         item['create_tmp'] = (item['create_tmp'] + random_second).strftime(fmt)
 
         return item
+
     def conditional_insert(self, tx, item):
         pass

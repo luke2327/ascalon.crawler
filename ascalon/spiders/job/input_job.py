@@ -14,10 +14,11 @@ class JobMapleSpider (scrapy.Spider):
     start_urls = [
         "http://maplestory.nexon.net/game/classes-jobs", # 모험가-전사 2019-09-22 by liam
     ]
-    url_scheme = 'youtube.com'
+
     def start_requests(self):
         for url in self.start_urls:
             yield scrapy.Request(url, self.parse, dont_filter=True)
+
     def parse(self, response):
         logging.info(response)
         scheme = 'http://maplestory.nexon.net'

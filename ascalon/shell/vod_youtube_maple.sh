@@ -11,7 +11,6 @@ export PATH
 
 echo Action : $PWD
 echo $PATH
-python test.py
 
 which python
 which scrapy

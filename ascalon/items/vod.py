@@ -7,7 +7,6 @@
 
 import scrapy
 
-
 class VodItem(scrapy.Item):
     title = scrapy.Field()
     auth = scrapy.Field()

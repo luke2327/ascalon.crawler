@@ -7,15 +7,20 @@
 
 import scrapy
 
-class RatingItem(scrapy.Item):
-    player_name = scrapy.Field()
-    game = scrapy.Field()
-    source = scrapy.Field()
-    rank = scrapy.Field()
+class NewsBase(scrapy.Item):
+    title = scrapy.Field()
+    published_date = scrapy.Field()
+    desc = scrapy.Field()
+    region = scrapy.Field()
     link = scrapy.Field()
-    del_field = scrapy.Field()
     create_tmp = scrapy.Field()
 
     def initialize(self, value):
         for keys, _ in self.fields.items():
             self[keys] = value
+
+class NoticeItem(NewsBase):
+    type = scrapy.Field()
+
+class UpdateItem(NewsBase):
+    pass

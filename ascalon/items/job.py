@@ -7,7 +7,6 @@
 
 import scrapy
 
-
 class JobItem(scrapy.Item):
     job_name = scrapy.Field()
     job_name_ko = scrapy.Field()

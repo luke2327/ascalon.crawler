@@ -12,6 +12,7 @@ class ItemPL(AscalonDefault):
 
     def __init__(self, idb, item, spider):
         super(ItemPL, self).__init__(idb, item, spider)
+
     def conditional_insert(self, tx, item):
         if item is None:
             return None
@@ -36,5 +37,6 @@ class ItemPL(AscalonDefault):
             sql = sql[:-2] + ')'
 
             tx.execute(sql)
+
         except Exception as e:
             print e

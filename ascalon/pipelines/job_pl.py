@@ -9,13 +9,15 @@ from ascalon.pipelines.default import AscalonDefault
 class JobPL(AscalonDefault):
     reload(sys)
     sys.setdefaultencoding('utf8')
+
     def __init__(self, idb, item, spider):
         super(JobPL, self).__init__(idb, item, spider)
+
     def conditional_insert(self, tx, item):
         if item is None:
             return None
-        ### 1. Insert Vod
-        # Make Insert Vod Query
+        ### 1. Insert Job
+        # Make Insert Job Query
 
         item = self._preprocessing(item)
         try:
@@ -29,11 +31,9 @@ class JobPL(AscalonDefault):
                 )
             )
 
-            print query
             tx.execute(query)
 
         except Exception as e:
             print 'hello'
             print e
         rating_id = tx.lastrowid
-        print rating_id
