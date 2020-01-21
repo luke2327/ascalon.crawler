@@ -24,13 +24,13 @@ class VodPL(AscalonDefault):
         try:
             query = (
                 'INSERT IGNORE INTO vod (title, game, '
-                '`source`, link, image_link, `duration`, create_tmp, auth, hits, del_field, language_cd) '
+                '`source`, link, image_link, `duration`, create_tmp, auth, del_field, language_cd) '
                 'VALUES'
-                '("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", %s, %s, "%s")'
+                '("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", %s, "%s")'
                 % (unicode(item['title']), item['game'], item['source'],
                     unicode(item['link']), unicode(item['image_link']),
                     unicode(item['duration']), unicode(item['create_tmp']),
-                    item['auth'], item['hits'], unicode(item['del_field']), item['language_cd']
+                    item['auth'], unicode(item['del_field']), item['language_cd']
                 )
             )
 
