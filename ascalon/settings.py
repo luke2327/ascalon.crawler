@@ -33,7 +33,7 @@ DB_CONNECT = {
     'db': 'eim',
     'user': 'root',
     'passwd': 'sin5chel',
-    'host': '34.207.159.244',
+    'host': '54.172.3.134',
     'charset': 'utf8',
     'use_unicode': True,
 }
