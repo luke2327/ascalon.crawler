@@ -12,6 +12,7 @@ from ascalon.lib.stdout.extractEncoding import ExtractEncoding as Encode
 class VodYoutubeMapleSpider (scrapy.Spider):
     name = 'vod_youtube_maple'
     start_urls = [
+        # maplestory
         "https://www.youtube.com/channel/UCiCNc3uj8Bnc9bDzHJS058Q/videos", # 신해조 2019-09-17 by liam
         "https://www.youtube.com/channel/UCR0aLp4aIvxS07g6rGWZr_g/videos", # 개구릿대 2019-10-06 by liam
         "https://www.youtube.com/channel/UC1dHu9GhbHH7RcHKyJdaOvA/videos", # 맑음 2019-10-06 by liam
@@ -19,6 +20,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
         "https://www.youtube.com/user/skswhdkgo/videos", # 세글자 2019-10-06 by liam
         "https://www.youtube.com/user/mlchoins/videos", # 명예훈장 2019-10-06 by liam
         "https://www.youtube.com/user/bjpange/videos", # 팡이 2019-10-06 by liam
+        "https://www.youtube.com/channel/UChYtqPBdX9xTFGKV0tFrtgg/videos", # 루니오 2020-01-23 by liam
     ]
     url_scheme = 'youtube.com'
 
