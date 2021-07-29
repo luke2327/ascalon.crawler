@@ -11,24 +11,24 @@ class ItemWeaponSpider (scrapy.Spider):
     name = 'item_weapon'
     start_urls = [
         'weapons/one-handed-sword',
-        'weapons/two-handed-sword',
-        'weapons/one-handed-axe',
-        'weapons/two-handed-axe',
-        'weapons/one-handed-blunt-weapon',
-        'weapons/two-handed-blunt-weapon',
-        'weapons/bow',
-        'weapons/crossbow',
-        'weapons/claw',
-        'weapons/dagger',
-        'weapons/spear',
-        'weapons/polearm',
-        'weapons/wand',
-        'weapons/staff',
-        'weapons/knuckle',
-        'weapons/gun',
-        'weapons/katara',
-        'weapons/dual-bow',
-        'weapons/cannon',
+        # 'weapons/two-handed-sword',
+        # 'weapons/one-handed-axe',
+        # 'weapons/two-handed-axe',
+        # 'weapons/one-handed-blunt-weapon',
+        # 'weapons/two-handed-blunt-weapon',
+        # 'weapons/bow',
+        # 'weapons/crossbow',
+        # 'weapons/claw',
+        # 'weapons/dagger',
+        # 'weapons/spear',
+        # 'weapons/polearm',
+        # 'weapons/wand',
+        # 'weapons/staff',
+        # 'weapons/knuckle',
+        # 'weapons/gun',
+        # 'weapons/katara',
+        # 'weapons/dual-bow',
+        # 'weapons/cannon',
     ]
     url_scheme = 'https://global.hidden-street.net/eq/'
 
@@ -38,6 +38,7 @@ class ItemWeaponSpider (scrapy.Spider):
 
     def parse(self, response):
         logging.info(response)
+        print(response.url)
         item_cate = response.url.split('/')[-1]
         if item_cate == 'one-handed-sword':
             item_cate = 52
@@ -231,4 +232,4 @@ class ItemWeaponSpider (scrapy.Spider):
                 logging.error(e)
                 continue
 
-            yield item
+            Encode(object = item)

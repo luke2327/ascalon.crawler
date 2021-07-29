@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import imp
 import re
 import logging
 import datetime
 from ascalon.pipelines.default import AscalonDefault
 
 class ItemPL(AscalonDefault):
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+    imp.reload(sys)
+    # sys.setdefaultencoding('utf8')
 
     def __init__(self, idb, item, spider):
         super(ItemPL, self).__init__(idb, item, spider)
@@ -39,4 +40,4 @@ class ItemPL(AscalonDefault):
             tx.execute(sql)
 
         except Exception as e:
-            print e
+            print(e)

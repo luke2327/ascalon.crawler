@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import imp
 import re
 import logging
 import datetime
 from ascalon.pipelines.default import AscalonDefault
 
 class NoticePL(AscalonDefault):
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+    imp.reload(sys)
+    # sys.setdefaultencoding('utf8')
 
     def __init__(self, idb, item, spider):
         super(NoticePL, self).__init__(idb, item, spider)
@@ -31,4 +32,4 @@ class NoticePL(AscalonDefault):
             tx.execute(query, (item['type'], item['title'], item['published_date'],
                     item['desc'], item['region'], item['link']))
         except Exception as e:
-            print e
+            print(e)

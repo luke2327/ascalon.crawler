@@ -24,7 +24,7 @@ class RatingSampleSpider(scrapy.Spider):
                 item['source'] = 'inven.co.kr'
                 item['game'] = 'LOL'
 
-                print item
+                print(item)
             except Exception:
                 continue
             yield item

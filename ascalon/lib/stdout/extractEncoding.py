@@ -29,10 +29,10 @@ class ExtractEncoding ():
                 pass
             elif type(object) is bool:
                 self._disposeOfBool(location = location, object = object)
-            elif type(object) is unicode:
-                self._disposeOfUnicode(location = location, object = object)
-            elif type(object) is long:
-                pass
+            # elif type(object) is unicode:
+            #     self._disposeOfUnicode(location = location, object = object)
+            # elif type(object) is long:
+            #     pass
             elif ItemObject is not None:
                 self._disposeOfSpiderItem(object = object)
             elif object is None:
@@ -49,11 +49,11 @@ class ExtractEncoding ():
     def _disposeOfFloat (self, location, object):
         self._printer(location, __name__, sys._getframe().f_code.co_name, object)
     def _disposeOfDictionary (self, object):
-        print object
+        print(object)
     def _disposeOfList (self, object):
-        print object
+        print(object)
     def _disposeOfTuple (self, object):
-        print object
+        print(object)
     def _disposeOfBool (self, location, object):
         self._printer(location, __name__, sys._getframe().f_code.co_name, object)
     def _disposeOfUnicode (self, location, object):
@@ -63,13 +63,13 @@ class ExtractEncoding ():
 
 
     def _printer (self, location, moduleLocation, methods, object):
-        print '[' + moduleLocation + ' -> ' + methods + ']'
+        print('[' + moduleLocation + ' -> ' + methods + ']')
         if location is not None:
-            print '[' + str(type(object)) + '][' + location + '] ' + str(object) + '\n'
+            print('[' + str(type(object)) + '][' + location + '] ' + str(object) + '\n')
         else:
-            print '[value] ' + str(object) + '\n'
+            print('[value] ' + str(object) + '\n')
     def _printerByIterator (self, moduleLocation, methods, object):
-        print '[' + moduleLocation + ' -> ' + methods + ']'
-        for key, val in object.iteritems():
-            print '[' + str(type(val)) + '][' + key + '] ' + str(val)
-        print '\n'
+        print('[' + moduleLocation + ' -> ' + methods + ']')
+        for key, val in object.items():
+            print('[' + str(type(val)) + '][' + key + '] ' + str(val))
+        print('\n')

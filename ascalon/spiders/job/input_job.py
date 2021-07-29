@@ -37,7 +37,7 @@ class JobMapleSpider (scrapy.Spider):
             try:
                 yield scrapy.Request(url, meta={'item': item}, callback=self.parse_job)
             except Exception as e:
-                print e
+                print(e)
 
     def parse_job(self, response):
         item = response.meta['item']

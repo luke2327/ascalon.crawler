@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import sys
+import imp
 import re
 import datetime
 import random
@@ -9,8 +10,8 @@ from ascalon.lib.timezone.tzinfo import TZINFO
 settings = get_project_settings()
 
 class AscalonDefault(object):
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+    imp.reload(sys)
+    # sys.setdefaultencoding('utf8')
 
     def __init__(self, idb, item, spider):
         query = idb.dbpool.runInteraction(

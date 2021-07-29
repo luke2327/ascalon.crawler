@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import imp
 import re
 import logging
 import datetime
 from ascalon.pipelines.default import AscalonDefault
 
 class RatingPL(AscalonDefault):
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+    imp.reload(sys)
+    # sys.setdefaultencoding('utf8')
 
     def __init__(self, idb, item, spider):
         super(RatingPL, self).__init__(idb, item, spider)
@@ -34,5 +35,5 @@ class RatingPL(AscalonDefault):
             tx.execute(query)
 
         except Exception as e:
-            print e
+            print(e)
         # rating_id = tx.lastrowid

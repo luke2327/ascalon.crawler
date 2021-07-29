@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import imp
 import re
 import logging
 import datetime
 from ascalon.pipelines.default import AscalonDefault
 
 class VodPL(AscalonDefault):
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+    imp.reload(sys)
+    # sys.setdefaultencoding('utf8')
 
     def __init__(self, idb, item, spider):
         super(VodPL, self).__init__(idb, item, spider)
@@ -37,6 +38,6 @@ class VodPL(AscalonDefault):
             tx.execute(query)
 
         except Exception as e:
-            print 'hello'
-            print e
+            print('hello')
+            print(e)
         # rating_id = tx.lastrowid

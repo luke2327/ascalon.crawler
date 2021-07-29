@@ -136,7 +136,7 @@ class VodYoutubeMapleSpider (scrapy.Spider):
                 logging.error(e)
                 continue
             except Exception as e:
-                print e
+                print(e)
 
             ############
             ## CUSTOM ##
